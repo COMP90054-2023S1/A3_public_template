@@ -50,7 +50,7 @@ The purpose of this project is to implement an autonomous agent that can play th
 **Your second task** is to get familiar with the code by developing an simple agent based on any one of the techniques listed below. This is an **individual** task. By completing this task, your teams should be able to have 3 or 4 decent agents to play with each other. In addition, each team member should understand more about the game and code.
 
 > :loudspeaker: 
-You may want to look at the file [`agents/single_lookahead.py`](agents/generic/single_lookahead.py), which contains a simple agent that looks ahead one move and selects the best moved based on a (currently empty) heuristic.
+You may want to look at the file [`agents/t_XXX/example_bfs.py`](agents/T_XXX/example_bfs.py), which contains a simple agent that is using BFS and selects the first moved from the plan (if it find any) given a goal function (currently empty).
 
 **Your third task** is to develop an autonomous agent team to play Azul by suitably modifying file [`agents/t_XXX/myTeam.py`](agents/t_000/myTeam.py) (and maybe some other auxiliarly files you may implement). The code submitted should be internally commented at high standards and be error-free and _never crash_. 
 
