@@ -487,10 +487,10 @@ if __name__ == '__main__':
     msg = ""
     options = loadParameter()
     matches = run(options,msg)
-    # if not os.path.exists(options.output):
-    #     os.makedirs(options.output)
-    # with open(f"{options.output}/matches.json",'w') as f:
-    #     json.dump(matches,f)  
+    if not os.path.exists(options.output):
+        os.makedirs(options.output)
+    with open(f"{options.output}/matches.json",'w') as f:
+        json.dump(matches,f)  
 
 
 # END FILE -----------------------------------------------------------------------------------------------------------#
