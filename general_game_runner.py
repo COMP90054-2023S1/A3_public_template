@@ -90,7 +90,7 @@ def gitCloneTeam(team_info, output_path):
         os.makedirs(repo_path)
 
     if not is_git_repo(repo_path):
-        logging.info(f'Trying to clone NEW team repo from URL {clone_url}.')
+        logging.info(f'Trying to clone NEW team repo from URL {clone_url.replace(token,"")}.')
         try:
             # repo = git.Repo.clone_from(clone_url, repo_path, branch=branch, no_checkout=True)
             repo = git.Repo.clone_from(clone_url, repo_path,  no_checkout=True)
@@ -115,17 +115,17 @@ def gitCloneTeam(team_info, output_path):
             sys.exit("keyboard interrupted!")
             # repo.close()
         except TypeError as e:
-            logging.warning(f'Repo for team {team_name} was cloned but has no tag {branch}, removing it...: {e}')
+            logging.warning(f'Repo for team {team_name} was cloned but has no tag {branch}, removing it...: {e.stderr.replace(token,"")}')
             shutil.rmtree(repo_path)
             # teams_notag.append(team_name)
             team_info.update({'git':'failed'})
-            team_info.update({'comments':f'Repo for team {team_name} was cloned but has no tag {branch}, removing it...: {e}'})
+            team_info.update({'comments':f'Repo for team {team_name} was cloned but has no tag {branch}, removing it...: {e.stderr.replace(token,"")}'})
             # repo.close()
         except Exception as e:
             logging.error(
-                f'Repo for team {team_name} cloned but unknown error when getting tag {branch}; should not happen. Stopping... {e}')
+                f'Repo for team {team_name} cloned but unknown error when getting tag {branch}; should not happen. Stopping... {e.stderr.replace(token,"")}')
             team_info.update({'git':'failed'})
-            team_info.update({'comments':f'Repo for team {team_name} cloned but unknown error when getting tag {branch}; should not happen. Stopping... {e}'})
+            team_info.update({'comments':f'Repo for team {team_name} cloned but unknown error when getting tag {branch}; should not happen. Stopping... {e.stderr.replace(token,"")}'})
             # repo.close()  
     else:
         team_info.update({'git':'succ'})
