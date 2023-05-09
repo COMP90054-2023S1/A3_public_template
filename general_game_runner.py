@@ -65,6 +65,11 @@ def get_commit_time(repo:git.Repo):
 
 def gitCloneTeam(team_info, output_path):
     
+    
+    if team_info['agent'] == 'agents.generic.random':
+        team_info.update({'git':'succ'})
+        return team_info
+    
     token = None
     with open(GIT_TOKEN_PATH, "r") as f:
         token = f.read()
@@ -87,7 +92,8 @@ def gitCloneTeam(team_info, output_path):
     if not is_git_repo(repo_path):
         logging.info(f'Trying to clone NEW team repo from URL {clone_url}.')
         try:
-            repo = git.Repo.clone_from(clone_url, repo_path, branch=branch, no_checkout=True)
+            # repo = git.Repo.clone_from(clone_url, repo_path, branch=branch, no_checkout=True)
+            repo = git.Repo.clone_from(clone_url, repo_path,  no_checkout=True)
             repo.git.checkout(commit_id)
             # repo = git.Repo.clone_from(clone_url, repo_path)
             submission_time = get_commit_time(repo)
@@ -487,10 +493,10 @@ if __name__ == '__main__':
     msg = ""
     options = loadParameter()
     matches = run(options,msg)
-    if not os.path.exists(options.output):
-        os.makedirs(options.output)
-    with open(f"{options.output}/matches.json",'w') as f:
-        json.dump(matches,f)  
+    # if not os.path.exists(options.output):
+    #     os.makedirs(options.output)
+    # with open(f"{options.output}/matches.json",'w') as f:
+    #     json.dump(matches,f)  
 
 
 # END FILE -----------------------------------------------------------------------------------------------------------#
