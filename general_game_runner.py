@@ -136,8 +136,9 @@ def gitCloneTeam(team_info, output_path):
                 shutil.copytree(f"{repo_path}/agents/{team_name}", f"agents/{team_name}")
         except:
             traceback.print_exc()
+            team_info.update({'comments':f'agents/{team_name} is not found'})
         shutil.rmtree(f"{repo_path}")
-    team_info.update({'copy_files':os.path.exists(f"agents/{team_name}/player.py")})
+    team_info.update({'copy_files':os.path.exists(f"agents/{team_name}/myTeam.py")})
     return team_info
 
 
