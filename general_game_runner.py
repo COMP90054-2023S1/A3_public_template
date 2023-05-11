@@ -36,7 +36,7 @@ from optparse import OptionParser
 DEFAULT_AGENT = "agents.generic.random"
 DEFAULT_AGENT_NAME = "default"
 # NUM_AGENTS    = 2
-GIT_TOKEN_PATH = "configs/token.txt"
+GIT_TOKEN_PATH = "configs/git_token.txt"
 TIMEZONE = pytz.timezone('Australia/Melbourne')
 DATE_FORMAT = '%d/%m/%Y %H:%M:%S'  # RMIT Uni (Australia)
 
@@ -87,7 +87,7 @@ def gitCloneTeam(team_info, output_path):
     if not is_git_repo(repo_path):
         logging.info(f'Trying to clone NEW team repo from URL {clone_url}.')
         try:
-            repo = git.Repo.clone_from(clone_url, repo_path, branch=branch, no_checkout=True)
+            repo = git.Repo.clone_from(clone_url, repo_path, no_checkout=True)
             repo.git.checkout(commit_id)
             # repo = git.Repo.clone_from(clone_url, repo_path)
             submission_time = get_commit_time(repo)
@@ -485,12 +485,17 @@ if __name__ == '__main__':
     > python runner.py --help
     """
     msg = ""
+
     options = loadParameter()
+    
+    with open(f"{options.output}/matches.json",'w') as f:
+        json.dump({},f)  
+    
     matches = run(options,msg)
-    # if not os.path.exists(options.output):
-    #     os.makedirs(options.output)
-    # with open(f"{options.output}/matches.json",'w') as f:
-    #     json.dump(matches,f)  
+    if not os.path.exists(options.output):
+        os.makedirs(options.output)
+    with open(f"{options.output}/matches.json",'w') as f:
+        json.dump(matches,f)  
 
 
 # END FILE -----------------------------------------------------------------------------------------------------------#
