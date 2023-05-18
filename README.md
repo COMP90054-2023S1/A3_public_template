@@ -58,6 +58,8 @@ Over the course of the project, you must try at least **least 3 AI-related techn
 
 1. Blind or Heuristic Search Algorithms (using general or domain-specific heuristic functions).
 2. Classical Planning (PDDL and calling a classical planner).
+> :loudspeaker: 
+ The provided runnable planner file is `ff`. You need to call it in a linux environment (docker).
 3. Policy iteration or Value Iteration (Model-Based MDP).
 4. Monte Carlo Tree Search or UCT (Model-Free MDP).
 5. Reinforcement Learning – classical, approximate or deep Q-learning (Model-Free MDP).
