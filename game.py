@@ -120,7 +120,7 @@ class Game:
                     #  - Else, look for move in actions list by equality according to Python.
                     #If this is the agent's first turn, allow warmup time.
                     try: 
-                        selected = func_timeout(WARMUP if action_counter < len(self.agents) else self.time_limit, 
+                        selected = func_timeout(WARMUP if action_counter-1 < len(self.agents) else self.time_limit, 
                                                 agent.SelectAction,args=(actions_copy, gs_copy))
                     except FunctionTimedOut:
                         selected = "timeout"
