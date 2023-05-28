@@ -395,6 +395,11 @@ class TextDisplayer(Displayer):
     def  _DisplayState(self,game_state):
         pass
 
+    def IllegalWarning(self,runner,id,exception):
+        self._InsertState("Agent {} requested illegal move, throwing exception: " +  str(repr(exception)) + ". Assigning penalty {} out of {}. Choosing at random...".format(id, runner.warnings[id],runner.warning_limit),runner.game_rule.current_game_state)
+        print("Agent {} requested illegal move, throwing exception: " +  str(repr(exception)) + ". Assigning penalty {} out of {}. Choosing at random...".format(id, runner.warnings[id],runner.warning_limit),runner.game_rule.current_game_state)
+        
+        
     def ExcuteAction(self,i,move, game_state):
         print(i)
         print(game_state.agents)
