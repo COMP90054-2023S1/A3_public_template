@@ -11,3 +11,4 @@ torch==1.11.0
 lapkt==0.1.1
 pulp==2.7.0
 protobuf==3.20.0
+pandas==1.5.0
