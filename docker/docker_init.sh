@@ -60,11 +60,11 @@ docker container rm ${container_name}
 # docker_cmd="docker run -it --rm --cpus=${CPU_limit} --memory=${RAM_limit} --name ${container_name} -v ${current_path}:${docker_path} -w /${docker_path} ${image_name}:${image_tag} bash"
 
 # docker_cmd="docker run -it --rm --cpus=${CPU_limit} --memory=${RAM_limit} --name ${container_name} -v ${current_path}:${docker_path} -w /${docker_path} ${image_name}:${image_tag} bash"
+# docker_cmd="docker build -f docker/Dockerfile -t ${image_name}:${image_tag} ."
+# sudo docker build -f docker/Dockerfile -t ${image_name}:${image_tag}
 
-sudo docker build -f Dockerfile -t ${image_name}:${image_tag}
-
-echo $docker_cmd
-eval $docker_cmd
+# echo $docker_cmd
+# eval $docker_cmd
 
 
 exit
